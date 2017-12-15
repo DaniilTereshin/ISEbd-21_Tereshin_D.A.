@@ -55,7 +55,7 @@ public class Kreiser extends Ship {
 
 
 
-			g.setColor(Color.BLACK);
+			g.setColor(color);
 
 
 

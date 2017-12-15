@@ -136,7 +136,7 @@ public class Ship extends SwimmingTechnique {
 
 	protected void drawShipPlane(Graphics g) {
 
-		g.setColor(Color.BLACK);
+		g.setColor(color);
 
 		 g.drawLine(startX, startY, startX + 60, startY);
 

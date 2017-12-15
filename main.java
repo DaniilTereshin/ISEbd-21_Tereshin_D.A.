@@ -2,6 +2,8 @@ import java.awt.BorderLayout;
 
 import java.awt.Color;
 
+import java.awt.Component;
+
 import java.awt.EventQueue;
 
 import java.awt.Frame;
@@ -22,6 +24,10 @@ import javax.swing.JColorChooser;
 
 import javax.swing.JLabel;
 
+import javax.swing.JOptionPane;
+
+
+
 import java.awt.event.ActionListener;
 
 import java.awt.image.BufferedImage;
@@ -38,42 +44,15 @@ public class main {
 
 	private JFrame frame;
 
-	private JTextField textMaxSpeed;
-
-	private JTextField textmaxCountEkipazh;
-
-	private JTextField texttonnazh;
-
-	private JTextField textgoruchee;
-	
+	Port port;
 
 
-
-	Color color;
-
-	Color colorKreiser;
-
-	int maxSpeed;
-
-	int tonnazh;
-
-	int maxCountEkipazh;
-
-	int goruchee;
-
-	boolean zenit;
-
-	boolean brony;
-
-	
-
-
-
-	private ITechno interTran;
 
 	private Frame btnColor;
 
-	private Frame btnSelectFigtherColor;
+	private Frame btnSelectKreiserColor;
+
+	private JTextField numPlace;
 
 
 
@@ -117,23 +96,15 @@ public class main {
 
 	public main() {
 
-		color = Color.GRAY;
+		port = new Port();
 
-		colorKreiser = Color.BLUE;
-
-		maxSpeed = 2000;
-
-		maxCountEkipazh = 2;
-
-		goruchee = 30;
-
-		tonnazh = 5;
-
-
+	
 
 		initialize();
 
+	    
 
+	    
 
 	}
 
@@ -149,102 +120,48 @@ public class main {
 
 		frame = new JFrame();
 
-		frame.setBounds(100, 100, 682, 434);
+		frame.setBounds(100, 100, 1080, 559);
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		frame.getContentPane().setLayout(null);
 
-
-
-		textMaxSpeed = new JTextField();
-
-		textMaxSpeed.setBounds(176, 227, 86, 20);
-
-		frame.getContentPane().add(textMaxSpeed);
-
-		textMaxSpeed.setColumns(10);
+		
 
 
 
-		textmaxCountEkipazh = new JTextField();
+		JPanel panel = new Panel(port);
 
-		textmaxCountEkipazh.setBounds(81, 261, 86, 20);
-
-		frame.getContentPane().add(textmaxCountEkipazh);
-
-		textmaxCountEkipazh.setColumns(10);
-
-
-
-		textgoruchee = new JTextField();
-
-		textgoruchee.setBounds(353, 227, 86, 20);
-
-		frame.getContentPane().add(textgoruchee);
-
-		textgoruchee.setColumns(10);
-
-
-
-		texttonnazh = new JTextField();
-
-		texttonnazh.setBounds(368, 261, 86, 20);
-
-		frame.getContentPane().add(texttonnazh);
-
-		texttonnazh.setColumns(10);
-
-
-
-		JPanel panel = new JPanel();
-
-		panel.setBounds(10, 11, 547, 195);
+		panel.setBounds(10, 11, 854, 499);
 
 		frame.getContentPane().add(panel);
 
-
-
-		JCheckBox checkzenit = new JCheckBox("Zenit" + "");
-
-		checkzenit.setBounds(548, 226, 97, 23);
-
-		frame.getContentPane().add(checkzenit);
-
-
-
-		JCheckBox checkbrony = new JCheckBox("brony");
-
-		checkbrony.setBounds(548, 260, 97, 23);
-
-		frame.getContentPane().add(checkbrony);
-
-
+		
 
 		
 
 
-		JButton btnDrawPlane = new JButton("Zadat Korabl");
 
-		btnDrawPlane.addActionListener(new ActionListener() {
+		JButton btnSetPlane = new JButton("Пришвартовать корабль");
+		btnSetPlane.setBackground(Color.PINK);
+
+		btnSetPlane.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 
 
 
-				if (checkFields()) {
+				Color colorDialog = JColorChooser.showDialog(null, "JColorChooser Sample", null);
 
-					interTran =  new Ship( maxSpeed, maxCountEkipazh, tonnazh, color);
+				if (colorDialog != null) {
 
+					ITechno plane = new Ship(1000, 100, 30, colorDialog);
 
+					int place = port.putPlaneInPort(plane);
 
-					Graphics g = panel.getGraphics();
+					panel.repaint();
 
-					g.clearRect(0, 0, panel.getWidth(), panel.getHeight());
-
-					interTran.draw(g);
-
-
+					JOptionPane.showMessageDialog(null, "Ваше место " + place);
 
 				}
 
@@ -254,38 +171,42 @@ public class main {
 
 		});
 
-		btnDrawPlane.setBounds(148, 319, 138, 37);
+		btnSetPlane.setBounds(874, 293, 180, 23);
 
-		frame.getContentPane().add(btnDrawPlane);
+		frame.getContentPane().add(btnSetPlane);
 
 
 
-		JButton btnDrawKreiser = new JButton("Zadat Kreiser");
+		JButton btnSetFigther = new JButton("Пришвартовать Крейсер");
+		btnSetFigther.setBackground(Color.PINK);
 
-		btnDrawKreiser.addActionListener(new ActionListener() {
+		btnSetFigther.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 
-				if (checkFields()) {
+				Color colorDialog1 = JColorChooser.showDialog(null, "JColorChooser Sample", null);
 
-					zenit = checkzenit.isSelected();
+				if (colorDialog1 != null) {
 
-					brony = checkbrony.isSelected();
+					Color colorDialog = JColorChooser.showDialog(null, "JColorChooser Sample", null);
 
-					
+					if (colorDialog != null) {
 
-					interTran =  new Kreiser( maxSpeed,  maxCountEkipazh,  tonnazh,  goruchee,  color,
-				             zenit, brony,  colorKreiser);
+						ITechno plane = new  Kreiser(1000, 100, 30, 30, colorDialog1, true, true, colorDialog);
 
+						int place = port.putPlaneInPort(plane);
 
+						panel.repaint();
 
-					Graphics g = panel.getGraphics();
+						JOptionPane.showMessageDialog(null, "Ваше место " + place);
 
-					g.clearRect(0, 0, panel.getWidth(), panel.getHeight());
-
-					interTran.draw(g);
+					}
 
 				}
+
+
+
+				
 
 
 
@@ -293,117 +214,80 @@ public class main {
 
 		});
 
-		btnDrawKreiser.setBounds(494, 322, 162, 37);
+		btnSetFigther.setBounds(874, 330, 180, 23);
 
-		frame.getContentPane().add(btnDrawKreiser);
+		frame.getContentPane().add(btnSetFigther);
 
 
 
-		JButton btnColor = new JButton("Цвет");
+		JPanel panelTake = new JPanel();
 
-		btnColor.setForeground(color);
+		panelTake.setBounds(901, 11, 153, 170);
 
-		btnColor.addActionListener(new ActionListener() {
+		frame.getContentPane().add(panelTake);
+
+
+
+		JButton btnTake = new JButton("Забрать");
+		btnTake.setBackground(Color.PINK);
+
+		btnTake.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
 
+				
 
+				if(checkPlace(numPlace.getText())) {
 
-				Color initialBackground = btnColor.getForeground();
+					ITechno plane = port.getPlaneInPort(Integer.parseInt(numPlace.getText()));
 
-				Color foreground = JColorChooser.showDialog(null, "JColorChooser Sample", initialBackground);
+					Graphics gr = panelTake.getGraphics();
 
-				if (foreground != null) {
+					gr.clearRect(0, 0, panelTake.getWidth(), panelTake.getHeight());
 
-					btnColor.setForeground(foreground);
+					plane.setPosition(10, 45);
+
+					plane.draw(gr);
+
+					panel.repaint();
 
 				}
 
-				color = foreground;
+				
 
 			}
 
 		});
 
-		btnColor.setBounds(10, 292, 115, 23);
+		btnTake.setBounds(901, 242, 117, 23);
 
-		frame.getContentPane().add(btnColor);
-
-		
-
-		
+		frame.getContentPane().add(btnTake);
 
 
 
-		JButton btnSelectFigtherColor = new JButton("DopColor");
+		JLabel lblNewLabel = new JLabel("Место");
 
-		btnSelectFigtherColor.setForeground(colorKreiser);
-
-		btnSelectFigtherColor.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-
-
-
-				Color initialBackground = btnSelectFigtherColor.getForeground();
-
-				Color foreground = JColorChooser.showDialog(null, "JColorChooser Sample", initialBackground);
-
-				if (foreground != null) {
-
-					btnSelectFigtherColor.setForeground(foreground);
-
-				}
-
-				colorKreiser = foreground;
-
-			}
-
-		});
-
-		btnSelectFigtherColor.setBounds(318, 326, 166, 23);
-
-		frame.getContentPane().add(btnSelectFigtherColor);
-
-
-
-		JLabel lblNewLabel = new JLabel("Speed");
-
-		lblNewLabel.setBounds(6, 230, 181, 17);
+		lblNewLabel.setBounds(912, 205, 46, 14);
 
 		frame.getContentPane().add(lblNewLabel);
 
 
 
-		JLabel lblNewLabel_1 = new JLabel("Ekipazh");
+		numPlace = new JTextField();
 
-		lblNewLabel_1.setBounds(29, 264, 46, 14);
+		numPlace.setBounds(968, 202, 86, 20);
 
-		frame.getContentPane().add(lblNewLabel_1);
+		frame.getContentPane().add(numPlace);
 
+		numPlace.setColumns(10);
 
-
-		JLabel texteight = new JLabel("tonnazh");
-
-		texteight.setBounds(290, 230, 46, 14);
-
-		frame.getContentPane().add(texteight);
-
-
-
-		JLabel lblNewLabel_3 = new JLabel("goruchee");
-
-		lblNewLabel_3.setBounds(290, 264, 111, 14);
-
-		frame.getContentPane().add(lblNewLabel_3);
-
-
+		
 
 	}
 
+	
 
-
-	private boolean checkParse(String str) {
+	private boolean checkPlace(String str) {
 
 		try {
 
@@ -417,38 +301,14 @@ public class main {
 
 
 
-		return true;
-
-	}
-
-
-
-	private boolean checkFields() {
-
-		if (checkParse(textMaxSpeed.getText()))
-
-			maxSpeed = Integer.parseInt(textMaxSpeed.getText());
-
-		if (checkParse(texttonnazh.getText()))
-
-			tonnazh = Integer.parseInt(texttonnazh.getText());
-
-		if (checkParse(textgoruchee.getText()))
-
-			goruchee = Integer.parseInt(textgoruchee.getText());
-
-		if (checkParse(textmaxCountEkipazh.getText()))
-
-			maxCountEkipazh = Integer.parseInt(textmaxCountEkipazh.getText());
-
-
-
-		System.out.println(maxSpeed + " " + goruchee + " " + tonnazh + " " + maxCountEkipazh);
-
-
+		if(Integer.parseInt(str)>20) return false;
 
 		return true;
 
 	}
+
+
+
+	
 
 }

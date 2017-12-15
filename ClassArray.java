@@ -1,8 +1,8 @@
+import java.io.Serializable;
 import java.util.Dictionary;
-
 import java.util.Hashtable;
 
-public class ClassArray<T extends ITechno> {
+public class ClassArray<T extends ITechno> implements Serializable {
 
 	private Dictionary<Integer, T> places;
 

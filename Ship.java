@@ -1,8 +1,11 @@
 import java.awt.Color;
-
 import java.awt.Graphics;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
-public class Ship extends SwimmingTechnique {
+public class Ship extends SwimmingTechnique implements Serializable {
 	public int maxCountEkipazh;
 
 	public static double osnastka;
@@ -14,7 +17,7 @@ public class Ship extends SwimmingTechnique {
 
 		this.goruchee = goruchee;
 
-		this.color = colorShip;
+		this.colorBody = colorShip;
 
 		this.tonnazh = tonnazh;
 
@@ -132,7 +135,7 @@ public class Ship extends SwimmingTechnique {
 
 	protected void drawShipPlane(Graphics g) {
 
-		g.setColor(color);
+		g.setColor(colorBody);
 
 		g.drawLine(startX, startY, startX + 60, startY);
 
@@ -142,6 +145,42 @@ public class Ship extends SwimmingTechnique {
 		g.fillRect(startX, startY - 35, 5, 16);
 		g.fillRect(startX + 8, startY - 40, 5, 20);
 		g.fillRect(startX + 16, startY - 45, 5, 26);
+	}
+
+	@Override
+	public String getInfo() {
+
+		// TODO Auto-generated method stub
+
+		return maxSpeed + ";" + goruchee + ";" + tonnazh + ";" + colorBody;
+
+	}
+
+	private void writeObject(ObjectOutputStream s) throws IOException {
+
+		s.defaultWriteObject();
+
+		s.writeInt(colorBody.getRed());
+
+		s.writeInt(colorBody.getGreen());
+
+		s.writeInt(colorBody.getBlue());
+
+	}
+
+	private void readObject(ObjectInputStream s) throws IOException,
+			ClassNotFoundException {
+
+		s.defaultReadObject();
+
+		int red = s.readInt();
+
+		int green = s.readInt();
+
+		int blue = s.readInt();
+
+		colorBody = new Color(red, green, blue);
+
 	}
 
 }

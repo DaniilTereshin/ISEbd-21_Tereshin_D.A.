@@ -14,7 +14,7 @@ public abstract class SwimmingTechnique implements ITechno {
 
 	public double tonnazh;
 
-	public Color color;
+	transient public Color colorBody;
 
 	protected abstract void setmaxSpeed(int s);
 
@@ -42,8 +42,10 @@ public abstract class SwimmingTechnique implements ITechno {
 
 	public void setMainColor(Color c) {
 
-		color = c;
+		colorBody = c;
 
 	}
+
+	public abstract String getInfo();
 
 }

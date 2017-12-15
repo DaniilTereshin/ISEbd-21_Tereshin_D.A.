@@ -1,9 +1,8 @@
 import java.awt.Color;
 
 import java.awt.Graphics;
-public abstract class SwimmingTechnique implements ITechno
-{
 
+public abstract class SwimmingTechnique implements ITechno {
 
 	protected int startX;
 
@@ -17,23 +16,13 @@ public abstract class SwimmingTechnique implements ITechno
 
 	public Color color;
 
-
-
 	protected abstract void setmaxSpeed(int s);
-
-
 
 	public abstract int getmaxSpeed();
 
-
-
 	protected abstract void setGoruchee(int w);
 
-
-
 	public abstract int getGoruchee();
-
-
 
 	protected abstract void setTonnazh(double h);
 
@@ -49,6 +38,5 @@ public abstract class SwimmingTechnique implements ITechno
 
 		startY = y;
 
-
-}
+	}
 }

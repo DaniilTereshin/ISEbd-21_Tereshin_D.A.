@@ -2,19 +2,13 @@ import java.util.Dictionary;
 
 import java.util.Hashtable;
 
-
-
-public class ClassArray <T extends ITechno> {
-
-	
+public class ClassArray<T extends ITechno> {
 
 	private Dictionary<Integer, T> places;
 
 	int maxCount;
 
 	private T defaultValue;
-
-
 
 	public ClassArray(int size, T defVal)
 
@@ -28,15 +22,14 @@ public class ClassArray <T extends ITechno> {
 
 	}
 
-	
-
 	public static <T extends ITechno> int plus(ClassArray<T> p, T plane)
 
 	{
 
-		if (p.places.size() == p.maxCount) return -1;
+		if (p.places.size() == p.maxCount)
+			return -1;
 
-		for(int i = 0; i < p.places.size(); i++)
+		for (int i = 0; i < p.places.size(); i++)
 
 		{
 
@@ -58,8 +51,6 @@ public class ClassArray <T extends ITechno> {
 
 	}
 
-
-
 	public static <T extends ITechno> T minus(ClassArray<T> p, int index)
 
 	{
@@ -80,30 +71,24 @@ public class ClassArray <T extends ITechno> {
 
 	}
 
-
-
 	public boolean checkFree(int index)
 
 	{
 
-		if(places.get(index)==null) return true;
+		if (places.get(index) == null)
+			return true;
 
 		return false;
 
 	}
 
-	
-
-	
-
 	public T getPlane(int ind) {
 
-		if(places.get(ind)!=null) return places.get(ind);
+		if (places.get(ind) != null)
+			return places.get(ind);
 
 		return defaultValue;
 
 	}
-
-	
 
 }

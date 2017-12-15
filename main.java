@@ -10,8 +10,6 @@ import java.awt.Frame;
 
 import java.awt.Graphics;
 
-
-
 import javax.swing.JFrame;
 
 import javax.swing.JPanel;
@@ -26,8 +24,6 @@ import javax.swing.JLabel;
 
 import javax.swing.JOptionPane;
 
-
-
 import java.awt.event.ActionListener;
 
 import java.awt.image.BufferedImage;
@@ -40,17 +36,11 @@ import javax.swing.JCheckBox;
 
 import javax.swing.JList;
 
-
-
 public class main {
-
-
 
 	private JFrame frame;
 
 	Port port;
-
-
 
 	private Frame btnColor;
 
@@ -64,12 +54,9 @@ public class main {
 
 	JList listLevels;
 
-
-
 	/**
-
+	 * 
 	 * Launch the application.
-
 	 */
 
 	public static void main(String[] args) {
@@ -96,40 +83,30 @@ public class main {
 
 	}
 
-
-
 	/**
-
+	 * 
 	 * Create the application.
-
 	 */
 
 	public main() {
 
 		port = new Port(5);
 
-
-
 		initialize();
 
 		for (int i = 0; i < 5; i++) {
 
-			elements[i] = "Уровень " + (i+1);
+			elements[i] = "Уровень " + (i + 1);
 
 		}
-
-
 
 		listLevels.setSelectedIndex(port.getCurrentLevel());
 
 	}
 
-
-
 	/**
-
+	 * 
 	 * Initialize the contents of the frame.
-
 	 */
 
 	private void initialize() {
@@ -142,17 +119,11 @@ public class main {
 
 		frame.getContentPane().setLayout(null);
 
+		panel = new Panel(port);
 
+		panel.setBounds(10, 11, 854, 499);
 
-			panel = new Panel(port);
-
-			panel.setBounds(10, 11, 854, 499);
-
-			frame.getContentPane().add(panel);
-
-		
-
-
+		frame.getContentPane().add(panel);
 
 		JButton btnSetPlane = new JButton("Пришвартовать корабль");
 
@@ -160,13 +131,12 @@ public class main {
 
 			public void actionPerformed(ActionEvent e) {
 
-
-
-				Color colorDialog = JColorChooser.showDialog(null, "JColorChooser Sample", null);
+				Color colorDialog = JColorChooser.showDialog(null,
+						"JColorChooser Sample", null);
 
 				if (colorDialog != null) {
 
-					ITechno plane = new Ship (1000, 100, 30, colorDialog);
+					ITechno plane = new Ship(1000, 100, 30, colorDialog);
 
 					int place = port.putPlaneInPort(plane);
 
@@ -176,8 +146,6 @@ public class main {
 
 				}
 
-
-
 			}
 
 		});
@@ -186,35 +154,35 @@ public class main {
 
 		frame.getContentPane().add(btnSetPlane);
 
-
-
 		JButton btnSetFigther = new JButton("Пришвартовать крейсер");
 
 		btnSetFigther.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 
-				Color colorDialog1 = JColorChooser.showDialog(null, "JColorChooser Sample", null);
+				Color colorDialog1 = JColorChooser.showDialog(null,
+						"JColorChooser Sample", null);
 
 				if (colorDialog1 != null) {
 
-					Color colorDialog = JColorChooser.showDialog(null, "JColorChooser Sample", null);
+					Color colorDialog = JColorChooser.showDialog(null,
+							"JColorChooser Sample", null);
 
 					if (colorDialog != null) {
 
-						ITechno plane = new Kreiser(1000, 100, 30, 30, colorDialog1, true, true, colorDialog);
+						ITechno plane = new Kreiser(1000, 100, 30, 30,
+								colorDialog1, true, true, colorDialog);
 
 						int place = port.putPlaneInPort(plane);
 
 						panel.repaint();
 
-						JOptionPane.showMessageDialog(null, "Ваше место " + place);
+						JOptionPane.showMessageDialog(null, "Ваше место "
+								+ place);
 
 					}
 
 				}
-
-
 
 			}
 
@@ -224,15 +192,11 @@ public class main {
 
 		frame.getContentPane().add(btnSetFigther);
 
-
-
 		JPanel panelTake = new JPanel();
 
 		panelTake.setBounds(901, 11, 153, 170);
 
 		frame.getContentPane().add(panelTake);
-
-
 
 		JButton btnTake = new JButton("Забрать корабль");
 
@@ -240,15 +204,15 @@ public class main {
 
 			public void actionPerformed(ActionEvent arg0) {
 
-
-
 				if (checkPlace(numPlace.getText())) {
 
-					ITechno plane = port.getPlaneInPort(Integer.parseInt(numPlace.getText()));
+					ITechno plane = port.getPlaneInPort(Integer
+							.parseInt(numPlace.getText()));
 
 					Graphics gr = panelTake.getGraphics();
 
-					gr.clearRect(0, 0, panelTake.getWidth(), panelTake.getHeight());
+					gr.clearRect(0, 0, panelTake.getWidth(),
+							panelTake.getHeight());
 
 					plane.setPosition(10, 45);
 
@@ -258,8 +222,6 @@ public class main {
 
 				}
 
-
-
 			}
 
 		});
@@ -268,15 +230,11 @@ public class main {
 
 		frame.getContentPane().add(btnTake);
 
-
-
 		JLabel lblNewLabel = new JLabel("Место");
 
 		lblNewLabel.setBounds(912, 205, 46, 14);
 
 		frame.getContentPane().add(lblNewLabel);
-
-
 
 		numPlace = new JTextField();
 
@@ -286,15 +244,11 @@ public class main {
 
 		numPlace.setColumns(10);
 
-
-
 		listLevels = new JList(elements);
 
 		listLevels.setBounds(891, 373, 153, 111);
 
 		frame.getContentPane().add(listLevels);
-
-
 
 		JButton btnLevelDown = new JButton("<<");
 
@@ -316,8 +270,6 @@ public class main {
 
 		frame.getContentPane().add(btnLevelDown);
 
-
-
 		JButton btnLevelUp = new JButton(">>");
 
 		btnLevelUp.addActionListener(new ActionListener() {
@@ -338,11 +290,7 @@ public class main {
 
 		frame.getContentPane().add(btnLevelUp);
 
-
-
 	}
-
-
 
 	private boolean checkPlace(String str) {
 
@@ -355,8 +303,6 @@ public class main {
 			return false;
 
 		}
-
-
 
 		if (Integer.parseInt(str) > 20)
 

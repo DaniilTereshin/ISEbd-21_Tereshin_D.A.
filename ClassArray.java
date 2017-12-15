@@ -1,6 +1,16 @@
+import java.util.Dictionary;
+
+import java.util.Hashtable;
+
+
+
 public class ClassArray <T extends ITechno> {
 
-	private T[] places;
+	
+
+	private Dictionary<Integer, T> places;
+
+	int maxCount;
 
 	private T defaultValue;
 
@@ -12,15 +22,9 @@ public class ClassArray <T extends ITechno> {
 
 		defaultValue = defVal;
 
-		places = (T[]) new ITechno[size];
+		places = new Hashtable<Integer, T>();
 
-		for(int i = 0; i < places.length; i++)
-
-		{
-
-			places[i] = defaultValue;
-
-		}
+		maxCount = size;
 
 	}
 
@@ -30,7 +34,9 @@ public class ClassArray <T extends ITechno> {
 
 	{
 
-		for(int i = 0; i < p.places.length; i++)
+		if (p.places.size() == p.maxCount) return -1;
+
+		for(int i = 0; i < p.places.size(); i++)
 
 		{
 
@@ -38,7 +44,7 @@ public class ClassArray <T extends ITechno> {
 
 			{
 
-				p.places[i] = plane;
+				p.places.put(i, plane);
 
 				return i;
 
@@ -46,7 +52,9 @@ public class ClassArray <T extends ITechno> {
 
 		}
 
-		return -1;
+		p.places.put(p.places.size(), plane);
+
+		return p.places.size() - 1;
 
 	}
 
@@ -56,13 +64,13 @@ public class ClassArray <T extends ITechno> {
 
 	{
 
-		if (!p.checkFree(index))
+		if (p.places.get(index) != null)
 
 		{
 
-			T plane = p.places[index];
+			T plane = p.places.get(index);
 
-			p.places[index] = p.defaultValue;
+			p.places.remove(index);
 
 			return plane;
 
@@ -78,13 +86,7 @@ public class ClassArray <T extends ITechno> {
 
 	{
 
-		if (index < 0 || index > places.length) return false;
-
-		if (places[index] == null) return true;
-
-		if (places[index].equals(defaultValue)) return true;
-
-
+		if(places.get(index)==null) return true;
 
 		return false;
 
@@ -92,13 +94,11 @@ public class ClassArray <T extends ITechno> {
 
 	
 
-	public T getObject(int index)
+	
 
-	{
+	public T getPlane(int ind) {
 
-		if (index > -1 && index < places.length) return places[index];
-
-
+		if(places.get(ind)!=null) return places.get(ind);
 
 		return defaultValue;
 

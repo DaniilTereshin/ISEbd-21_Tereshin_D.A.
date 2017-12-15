@@ -1,14 +1,17 @@
 import java.awt.Color;
-
 import java.awt.Graphics;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
-public class Kreiser extends Ship {
+public class Kreiser extends Ship implements Serializable {
 
 	private boolean zenit;
 
 	private boolean brony;
 
-	private Color colorKreiser;
+	transient private Color colorKreiser;
 
 	public Kreiser(int maxSpeed, int maxCountEkipazh, double tonnazh,
 			int goruchee, Color color, boolean zenit, boolean brony,
@@ -34,7 +37,7 @@ public class Kreiser extends Ship {
 
 		if (zenit) {
 
-			g.setColor(color);
+			g.setColor(colorBody);
 
 			g.setColor(colorKreiser);
 			g.fillOval(startX + 35, startY - 34, 18, 15);
@@ -56,6 +59,59 @@ public class Kreiser extends Ship {
 	public void setColorFight(Color f) {
 
 		colorKreiser = f;
+
+	}
+
+	private void writeObject(ObjectOutputStream s) throws IOException {
+
+		s.defaultWriteObject();
+
+		s.writeInt(colorBody.getRed());
+
+		s.writeInt(colorBody.getGreen());
+
+		s.writeInt(colorBody.getBlue());
+
+		s.writeInt(colorKreiser.getRed());
+
+		s.writeInt(colorKreiser.getGreen());
+
+		s.writeInt(colorKreiser.getBlue());
+
+	}
+
+	private void readObject(ObjectInputStream s) throws IOException,
+			ClassNotFoundException {
+
+		s.defaultReadObject();
+
+		int red = s.readInt();
+
+		int green = s.readInt();
+
+		int blue = s.readInt();
+
+		colorBody = new Color(red, green, blue);
+
+		int red1 = s.readInt();
+
+		int green1 = s.readInt();
+
+		int blue1 = s.readInt();
+
+		colorKreiser = new Color(red1, green1, blue1);
+
+	}
+
+	@Override
+	public String getInfo() {
+
+		// TODO Auto-generated method stub
+
+		return maxSpeed + ";" + maxCountEkipazh + ";" + tonnazh + ";"
+				+ goruchee + ";" + colorBody + ";" + zenit + ";" + brony + ";"
+
+				+ colorKreiser;
 
 	}
 

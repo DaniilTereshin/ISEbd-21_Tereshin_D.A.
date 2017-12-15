@@ -16,9 +16,13 @@ import javax.swing.JPanel;
 
 import javax.swing.JTextField;
 
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import javax.swing.JButton;
 
 import javax.swing.JColorChooser;
+
+import javax.swing.JFileChooser;
 
 import javax.swing.JLabel;
 
@@ -28,6 +32,16 @@ import java.awt.event.ActionListener;
 
 import java.awt.image.BufferedImage;
 
+import java.io.FileInputStream;
+
+import java.io.FileOutputStream;
+
+import java.io.IOException;
+
+import java.io.ObjectInputStream;
+
+import java.io.ObjectOutputStream;
+
 import java.util.Vector;
 
 import java.awt.event.ActionEvent;
@@ -35,6 +49,12 @@ import java.awt.event.ActionEvent;
 import javax.swing.JCheckBox;
 
 import javax.swing.JList;
+
+import javax.swing.JMenu;
+
+import javax.swing.JMenuBar;
+
+import javax.swing.JMenuItem;
 
 public class main {
 
@@ -44,7 +64,7 @@ public class main {
 
 	private Frame btnColor;
 
-	private Frame btnSelectFigtherColor;
+	private Frame btnSelectKreiserColor;
 
 	private JTextField numPlace;
 
@@ -123,7 +143,7 @@ public class main {
 
 			panel.repaint();
 
-			System.out.println("Ваше место: " + place);
+			System.out.println("Your place: " + place);
 
 		}
 
@@ -133,7 +153,7 @@ public class main {
 
 		frame = new JFrame();
 
-		frame.setBounds(100, 100, 1080, 559);
+		frame.setBounds(100, 100, 1080, 610);
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -141,7 +161,7 @@ public class main {
 
 		panel = new Panel(port);
 
-		panel.setBounds(10, 11, 854, 499);
+		panel.setBounds(10, 26, 854, 484);
 
 		frame.getContentPane().add(panel);
 
@@ -151,7 +171,7 @@ public class main {
 
 		frame.getContentPane().add(panelTake);
 
-		JButton btnTake = new JButton("Забрать корабль");
+		JButton btnTake = new JButton("Забрать");
 
 		btnTake.addActionListener(new ActionListener() {
 
@@ -179,7 +199,7 @@ public class main {
 
 		});
 
-		btnTake.setBounds(901, 233, 153, 23);
+		btnTake.setBounds(922, 233, 132, 23);
 
 		frame.getContentPane().add(btnTake);
 
@@ -243,7 +263,7 @@ public class main {
 
 		frame.getContentPane().add(btnLevelUp);
 
-		JButton btnGetPlane = new JButton("Добавить Корабль");
+		JButton btnGetPlane = new JButton("Добавить корабль");
 
 		btnGetPlane.addActionListener(new ActionListener() {
 
@@ -256,9 +276,77 @@ public class main {
 
 		});
 
-		btnGetPlane.setBounds(901, 300, 153, 23);
+		btnGetPlane.setBounds(912, 300, 142, 23);
 
 		frame.getContentPane().add(btnGetPlane);
+
+		JMenuBar menuBar = new JMenuBar();
+
+		JMenu menu = new JMenu("Файл");
+
+		frame.setJMenuBar(menuBar);
+
+		menuBar.add(menu);
+
+		JMenuItem menuSave = new JMenuItem("Сохранить");
+
+		menu.add(menuSave);
+
+		JMenuItem menuOpen = new JMenuItem("Загрузить");
+
+		menu.add(menuOpen);
+
+		menuSave.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent arg0) {
+
+				JFileChooser filesave = new JFileChooser();
+
+				if (filesave.showDialog(null, "Сохранить") == JFileChooser.APPROVE_OPTION) {
+
+					try {
+
+						if (port.save(filesave.getSelectedFile().getPath()))
+
+							if (filesave.getSelectedFile().getPath() != null)
+
+								System.out.println("Good");
+
+					} catch (IOException e) {
+
+						// TODO Auto-generated catch block
+
+						e.printStackTrace();
+
+					}
+
+				}
+
+			}
+
+		});
+
+		menuOpen.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent arg0) {
+
+				JFileChooser fileopen = new JFileChooser();
+
+				if (fileopen.showDialog(null, "Открыть") == JFileChooser.APPROVE_OPTION) {
+
+					if (port.load(fileopen.getSelectedFile().getPath()))
+
+						if (fileopen.getSelectedFile().getPath() != null)
+
+							System.out.println("Good");
+
+				}
+
+				panel.repaint();
+
+			}
+
+		});
 
 	}
 

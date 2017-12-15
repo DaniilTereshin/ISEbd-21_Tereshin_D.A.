@@ -8,6 +8,8 @@ public interface ITechno {
 
 	void setPosition(int x, int y);
 
-	void setMainColor(Color color); 
+	void setMainColor(Color color);
+
+	String getInfo();
 
 }

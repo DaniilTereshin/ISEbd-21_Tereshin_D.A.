@@ -7,8 +7,6 @@ public class Ship extends SwimmingTechnique {
 
 	public static double osnastka;
 
-	
-	
 	public Ship(int maxSpeed, double MaxCountEkipazh, int osnastka,
 			Color colorShip) {
 
@@ -92,8 +90,6 @@ public class Ship extends SwimmingTechnique {
 	@Override
 	public int getTonnazh() {
 
-		// TODO Auto-generated method stub
-
 		return (int) super.tonnazh;
 
 	}
@@ -101,15 +97,11 @@ public class Ship extends SwimmingTechnique {
 	@Override
 	public void move(Graphics g) {
 
-		/// TODO Auto-generated method stub
-
 		if (this.goruchee > 0) {
 
 			if (startY > maxSpeed)
 
 				startY -= 3;
-
-
 
 			startX += 10;
 
@@ -128,8 +120,6 @@ public class Ship extends SwimmingTechnique {
 	@Override
 	public void draw(Graphics g) {
 
-		// TODO Auto-generated method stub
-
 		drawShipPlane(g);
 
 	}
@@ -138,14 +128,14 @@ public class Ship extends SwimmingTechnique {
 
 		g.setColor(color);
 
-		 g.drawLine(startX, startY, startX + 60, startY);
+		g.drawLine(startX, startY, startX + 60, startY);
 
-         g.drawLine( startX, startY, startX - 10, startY - 20);
-         g.drawLine( startX + 60, startY , startX + 85, startY - 20);
-         g.drawLine( startX - 10, startY - 20, startX + 85, startY - 20);
-         g.fillRect(startX, startY - 35, 5, 16);
-         g.fillRect(startX + 8, startY - 40, 5, 20);
-         g.fillRect( startX + 16, startY - 45, 5, 26);		
+		g.drawLine(startX, startY, startX - 10, startY - 20);
+		g.drawLine(startX + 60, startY, startX + 85, startY - 20);
+		g.drawLine(startX - 10, startY - 20, startX + 85, startY - 20);
+		g.fillRect(startX, startY - 35, 5, 16);
+		g.fillRect(startX + 8, startY - 40, 5, 20);
+		g.fillRect(startX + 16, startY - 45, 5, 26);
 	}
 
 }

@@ -1,10 +1,8 @@
-public class ClassArray <T extends ITechno> {
+public class ClassArray<T extends ITechno> {
 
 	private T[] places;
 
 	private T defaultValue;
-
-
 
 	public ClassArray(int size, T defVal)
 
@@ -14,7 +12,7 @@ public class ClassArray <T extends ITechno> {
 
 		places = (T[]) new ITechno[size];
 
-		for(int i = 0; i < places.length; i++)
+		for (int i = 0; i < places.length; i++)
 
 		{
 
@@ -24,13 +22,11 @@ public class ClassArray <T extends ITechno> {
 
 	}
 
-	
-
 	public static <T extends ITechno> int plus(ClassArray<T> p, T plane)
 
 	{
 
-		for(int i = 0; i < p.places.length; i++)
+		for (int i = 0; i < p.places.length; i++)
 
 		{
 
@@ -49,8 +45,6 @@ public class ClassArray <T extends ITechno> {
 		return -1;
 
 	}
-
-
 
 	public static <T extends ITechno> T minus(ClassArray<T> p, int index)
 
@@ -72,38 +66,32 @@ public class ClassArray <T extends ITechno> {
 
 	}
 
-
-
 	public boolean checkFree(int index)
 
 	{
 
-		if (index < 0 || index > places.length) return false;
+		if (index < 0 || index > places.length)
+			return false;
 
-		if (places[index] == null) return true;
+		if (places[index] == null)
+			return true;
 
-		if (places[index].equals(defaultValue)) return true;
-
-
+		if (places[index].equals(defaultValue))
+			return true;
 
 		return false;
 
 	}
 
-	
-
 	public T getObject(int index)
 
 	{
 
-		if (index > -1 && index < places.length) return places[index];
-
-
+		if (index > -1 && index < places.length)
+			return places[index];
 
 		return defaultValue;
 
 	}
-
-	
 
 }

@@ -1,25 +1,16 @@
-
 import java.awt.Graphics;
-
-
 
 import javax.swing.JPanel;
 
-
-
-public class Panel extends JPanel{
-
-	
+public class Panel extends JPanel {
 
 	Port a;
 
 	public Panel(Port ae) {
 
-		this.a=ae;
+		this.a = ae;
 
 	}
-
-	
 
 	public void paint(Graphics g) {
 

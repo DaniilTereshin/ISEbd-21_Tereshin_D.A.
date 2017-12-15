@@ -32,9 +32,13 @@ import java.awt.event.ActionListener;
 
 import java.awt.image.BufferedImage;
 
+import java.util.Vector;
+
 import java.awt.event.ActionEvent;
 
 import javax.swing.JCheckBox;
+
+import javax.swing.JList;
 
 
 
@@ -53,6 +57,12 @@ public class main {
 	private Frame btnSelectKreiserColor;
 
 	private JTextField numPlace;
+
+	JPanel panel;
+
+	private String[] elements = new String[6];
+
+	JList listLevels;
 
 
 
@@ -96,15 +106,21 @@ public class main {
 
 	public main() {
 
-		port = new Port();
+		port = new Port(5);
 
-	
+
 
 		initialize();
 
-	    
+		for (int i = 0; i < 5; i++) {
 
-	    
+			elements[i] = "Уровень " + (i+1);
+
+		}
+
+
+
+		listLevels.setSelectedIndex(port.getCurrentLevel());
 
 	}
 
@@ -126,24 +142,19 @@ public class main {
 
 		frame.getContentPane().setLayout(null);
 
-		
 
 
+			panel = new Panel(port);
 
-		JPanel panel = new Panel(port);
+			panel.setBounds(10, 11, 854, 499);
 
-		panel.setBounds(10, 11, 854, 499);
-
-		frame.getContentPane().add(panel);
-
-		
+			frame.getContentPane().add(panel);
 
 		
 
 
 
 		JButton btnSetPlane = new JButton("Пришвартовать корабль");
-		btnSetPlane.setBackground(Color.PINK);
 
 		btnSetPlane.addActionListener(new ActionListener() {
 
@@ -155,7 +166,7 @@ public class main {
 
 				if (colorDialog != null) {
 
-					ITechno plane = new Ship(1000, 100, 30, colorDialog);
+					ITechno plane = new Ship (1000, 100, 30, colorDialog);
 
 					int place = port.putPlaneInPort(plane);
 
@@ -177,8 +188,7 @@ public class main {
 
 
 
-		JButton btnSetFigther = new JButton("Пришвартовать Крейсер");
-		btnSetFigther.setBackground(Color.PINK);
+		JButton btnSetFigther = new JButton("Пришвартовать крейсер");
 
 		btnSetFigther.addActionListener(new ActionListener() {
 
@@ -192,7 +202,7 @@ public class main {
 
 					if (colorDialog != null) {
 
-						ITechno plane = new  Kreiser(1000, 100, 30, 30, colorDialog1, true, true, colorDialog);
+						ITechno plane = new Kreiser(1000, 100, 30, 30, colorDialog1, true, true, colorDialog);
 
 						int place = port.putPlaneInPort(plane);
 
@@ -203,10 +213,6 @@ public class main {
 					}
 
 				}
-
-
-
-				
 
 
 
@@ -228,16 +234,15 @@ public class main {
 
 
 
-		JButton btnTake = new JButton("Забрать");
-		btnTake.setBackground(Color.PINK);
+		JButton btnTake = new JButton("Забрать корабль");
 
 		btnTake.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
 
-				
 
-				if(checkPlace(numPlace.getText())) {
+
+				if (checkPlace(numPlace.getText())) {
 
 					ITechno plane = port.getPlaneInPort(Integer.parseInt(numPlace.getText()));
 
@@ -253,13 +258,13 @@ public class main {
 
 				}
 
-				
+
 
 			}
 
 		});
 
-		btnTake.setBounds(901, 242, 117, 23);
+		btnTake.setBounds(891, 259, 132, 23);
 
 		frame.getContentPane().add(btnTake);
 
@@ -281,11 +286,63 @@ public class main {
 
 		numPlace.setColumns(10);
 
-		
+
+
+		listLevels = new JList(elements);
+
+		listLevels.setBounds(891, 373, 153, 111);
+
+		frame.getContentPane().add(listLevels);
+
+
+
+		JButton btnLevelDown = new JButton("<<");
+
+		btnLevelDown.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent arg0) {
+
+				port.levelDown();
+
+				listLevels.setSelectedIndex(port.getCurrentLevel());
+
+				panel.repaint();
+
+			}
+
+		});
+
+		btnLevelDown.setBounds(869, 495, 89, 23);
+
+		frame.getContentPane().add(btnLevelDown);
+
+
+
+		JButton btnLevelUp = new JButton(">>");
+
+		btnLevelUp.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+
+				port.levelUp();
+
+				listLevels.setSelectedIndex(port.getCurrentLevel());
+
+				panel.repaint();
+
+			}
+
+		});
+
+		btnLevelUp.setBounds(973, 495, 89, 23);
+
+		frame.getContentPane().add(btnLevelUp);
+
+
 
 	}
 
-	
+
 
 	private boolean checkPlace(String str) {
 
@@ -301,14 +358,12 @@ public class main {
 
 
 
-		if(Integer.parseInt(str)>20) return false;
+		if (Integer.parseInt(str) > 20)
+
+			return false;
 
 		return true;
 
 	}
-
-
-
-	
 
 }

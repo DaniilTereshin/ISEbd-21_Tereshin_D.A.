@@ -44,7 +44,7 @@ public class main {
 
 	private Frame btnColor;
 
-	private Frame btnSelectKreiserColor;
+	private Frame btnSelectFigtherColor;
 
 	private JTextField numPlace;
 
@@ -53,6 +53,8 @@ public class main {
 	private String[] elements = new String[6];
 
 	JList listLevels;
+
+	SelectPlane select;
 
 	/**
 	 * 
@@ -109,6 +111,24 @@ public class main {
 	 * Initialize the contents of the frame.
 	 */
 
+	public void getPlane() {
+
+		select = new SelectPlane(frame);
+
+		if (select.res()) {
+
+			ITechno plane = select.getPlane();
+
+			int place = port.putPlaneInPort(plane);
+
+			panel.repaint();
+
+			System.out.println("Ваше место: " + place);
+
+		}
+
+	}
+
 	private void initialize() {
 
 		frame = new JFrame();
@@ -124,73 +144,6 @@ public class main {
 		panel.setBounds(10, 11, 854, 499);
 
 		frame.getContentPane().add(panel);
-
-		JButton btnSetPlane = new JButton("Пришвартовать корабль");
-
-		btnSetPlane.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-
-				Color colorDialog = JColorChooser.showDialog(null,
-						"JColorChooser Sample", null);
-
-				if (colorDialog != null) {
-
-					ITechno plane = new Ship(1000, 100, 30, colorDialog);
-
-					int place = port.putPlaneInPort(plane);
-
-					panel.repaint();
-
-					JOptionPane.showMessageDialog(null, "Ваше место " + place);
-
-				}
-
-			}
-
-		});
-
-		btnSetPlane.setBounds(874, 293, 180, 23);
-
-		frame.getContentPane().add(btnSetPlane);
-
-		JButton btnSetFigther = new JButton("Пришвартовать крейсер");
-
-		btnSetFigther.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent e) {
-
-				Color colorDialog1 = JColorChooser.showDialog(null,
-						"JColorChooser Sample", null);
-
-				if (colorDialog1 != null) {
-
-					Color colorDialog = JColorChooser.showDialog(null,
-							"JColorChooser Sample", null);
-
-					if (colorDialog != null) {
-
-						ITechno plane = new Kreiser(1000, 100, 30, 30,
-								colorDialog1, true, true, colorDialog);
-
-						int place = port.putPlaneInPort(plane);
-
-						panel.repaint();
-
-						JOptionPane.showMessageDialog(null, "Ваше место "
-								+ place);
-
-					}
-
-				}
-
-			}
-
-		});
-
-		btnSetFigther.setBounds(874, 330, 180, 23);
-
-		frame.getContentPane().add(btnSetFigther);
 
 		JPanel panelTake = new JPanel();
 
@@ -226,7 +179,7 @@ public class main {
 
 		});
 
-		btnTake.setBounds(891, 259, 132, 23);
+		btnTake.setBounds(901, 233, 153, 23);
 
 		frame.getContentPane().add(btnTake);
 
@@ -289,6 +242,23 @@ public class main {
 		btnLevelUp.setBounds(973, 495, 89, 23);
 
 		frame.getContentPane().add(btnLevelUp);
+
+		JButton btnGetPlane = new JButton("Добавить Корабль");
+
+		btnGetPlane.addActionListener(new ActionListener() {
+
+			@SuppressWarnings("deprecation")
+			public void actionPerformed(ActionEvent e) {
+
+				getPlane();
+
+			}
+
+		});
+
+		btnGetPlane.setBounds(901, 300, 153, 23);
+
+		frame.getContentPane().add(btnGetPlane);
 
 	}
 

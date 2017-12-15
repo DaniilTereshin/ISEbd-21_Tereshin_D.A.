@@ -39,4 +39,11 @@ public abstract class SwimmingTechnique implements ITechno {
 		startY = y;
 
 	}
+
+	public void setMainColor(Color c) {
+
+		color = c;
+
+	}
+
 }

@@ -53,4 +53,10 @@ public class Kreiser extends Ship {
 
 	}
 
+	public void setColorFight(Color f) {
+
+		colorKreiser = f;
+
+	}
+
 }

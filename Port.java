@@ -72,14 +72,14 @@ public class Port implements Serializable {
 
 	}
 
-	public int putPlaneInPort(ITechno plane) {
+	public int putPlaneInPort(ITechno plane) throws PortOverflowException {
 
 		return aerodromeStages.get(currentLevel).plus(
 				aerodromeStages.get(currentLevel), plane);
 
 	}
 
-	public ITechno getPlaneInPort(int index) {
+	public ITechno getPlaneInPort(int index) throws PortIndexOutOfRangeException  {
 
 		return aerodromeStages.get(currentLevel).minus(
 				aerodromeStages.get(currentLevel), index);
@@ -146,7 +146,7 @@ public class Port implements Serializable {
 
 		ObjectOutputStream obSave = new ObjectOutputStream(save);
 
-		System.out.println(aerodromeStages.get(0).getPlane(0).getInfo());
+		
 
 		obSave.writeObject(aerodromeStages);
 
@@ -166,8 +166,7 @@ public class Port implements Serializable {
 				aerodromeStages = (ArrayList<ClassArray<ITechno>>) obLoad
 						.readObject();
 
-				System.out
-						.println(aerodromeStages.get(0).getPlane(0).getInfo());
+				
 
 			} catch (ClassNotFoundException e) {
 

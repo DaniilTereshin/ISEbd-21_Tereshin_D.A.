@@ -23,11 +23,12 @@ public class ClassArray<T extends ITechno> implements Serializable {
 	}
 
 	public static <T extends ITechno> int plus(ClassArray<T> p, T plane)
+			throws PortOverflowException
 
 	{
 
 		if (p.places.size() == p.maxCount)
-			return -1;
+			throw new PortOverflowException();
 
 		for (int i = 0; i < p.places.size(); i++)
 
@@ -52,6 +53,7 @@ public class ClassArray<T extends ITechno> implements Serializable {
 	}
 
 	public static <T extends ITechno> T minus(ClassArray<T> p, int index)
+			throws PortIndexOutOfRangeException
 
 	{
 
@@ -67,7 +69,7 @@ public class ClassArray<T extends ITechno> implements Serializable {
 
 		}
 
-		return p.defaultValue;
+		throw new PortIndexOutOfRangeException();
 
 	}
 

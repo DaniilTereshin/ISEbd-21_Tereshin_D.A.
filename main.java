@@ -1,59 +1,37 @@
 import java.awt.BorderLayout;
-
 import java.awt.Color;
-
 import java.awt.Component;
-
 import java.awt.EventQueue;
-
 import java.awt.Frame;
-
 import java.awt.Graphics;
 
 import javax.swing.JFrame;
-
 import javax.swing.JPanel;
-
 import javax.swing.JTextField;
-
 import javax.swing.filechooser.FileNameExtensionFilter;
-
 import javax.swing.JButton;
-
 import javax.swing.JColorChooser;
-
 import javax.swing.JFileChooser;
-
 import javax.swing.JLabel;
-
 import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
-
 import java.awt.image.BufferedImage;
-
 import java.io.FileInputStream;
-
 import java.io.FileOutputStream;
-
 import java.io.IOException;
-
 import java.io.ObjectInputStream;
-
 import java.io.ObjectOutputStream;
-
 import java.util.Vector;
-
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JCheckBox;
-
 import javax.swing.JList;
-
 import javax.swing.JMenu;
-
 import javax.swing.JMenuBar;
-
 import javax.swing.JMenuItem;
 
 public class main {
@@ -75,6 +53,7 @@ public class main {
 	JList listLevels;
 
 	SelectPlane select;
+	private static Logger log;
 
 	/**
 	 * 
@@ -113,7 +92,29 @@ public class main {
 	public main() {
 
 		port = new Port(5);
+		log = Logger.getLogger(main.class.getName());
 
+		FileHandler fh = null;
+
+		try {
+
+			fh = new FileHandler("E:\\log.txt");
+
+		} catch (SecurityException e) {
+
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+
+		} catch (IOException e) {
+
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+
+		}
+
+		log.addHandler(fh);
 		initialize();
 
 		for (int i = 0; i < 5; i++) {
@@ -139,7 +140,27 @@ public class main {
 
 			ITechno plane = select.getPlane();
 
-			int place = port.putPlaneInPort(plane);
+			int place = 0;
+
+			try {
+
+				place = port.putPlaneInPort(plane);
+
+				log.log(Level.INFO, "Поставили корабль на место " + place);
+
+			} catch (PortOverflowException e) {
+
+				// TODO Auto-generated catch block
+
+				e.printStackTrace();
+
+				JOptionPane.showMessageDialog(null, "Ошибка переполнения");
+
+			} catch (Exception ex) {
+
+				JOptionPane.showMessageDialog(null, "Общая ошибка");
+
+			}
 
 			panel.repaint();
 
@@ -179,9 +200,27 @@ public class main {
 
 				if (checkPlace(numPlace.getText())) {
 
-					ITechno plane = port.getPlaneInPort(Integer
-							.parseInt(numPlace.getText()));
+					ITechno plane = null;
 
+					try {
+
+						plane = port.getPlaneInPort(Integer.parseInt(numPlace
+								.getText()));
+
+						log.log(Level.INFO, "Забрали корабль с места "
+								+ numPlace.getText());
+
+					} catch (PortIndexOutOfRangeException e) {
+
+						// TODO Auto-generated catch block
+
+						JOptionPane.showMessageDialog(null, "Неверный номер");
+
+					} catch (Exception ex) {
+
+						JOptionPane.showMessageDialog(null, "Общая ошибка");
+
+					}
 					Graphics gr = panelTake.getGraphics();
 
 					gr.clearRect(0, 0, panelTake.getWidth(),
@@ -232,7 +271,7 @@ public class main {
 				port.levelDown();
 
 				listLevels.setSelectedIndex(port.getCurrentLevel());
-
+				log.log(Level.INFO, "Спустились на уровень ниже");
 				panel.repaint();
 
 			}
@@ -252,6 +291,7 @@ public class main {
 				port.levelUp();
 
 				listLevels.setSelectedIndex(port.getCurrentLevel());
+				log.log(Level.INFO, "Спустились на уровень выше");
 
 				panel.repaint();
 
@@ -308,9 +348,14 @@ public class main {
 
 						if (port.save(filesave.getSelectedFile().getPath()))
 
-							if (filesave.getSelectedFile().getPath() != null)
+							if (filesave.getSelectedFile().getPath() != null) {
 
 								System.out.println("Good");
+
+								log.log(Level.INFO, "Сохранили порт в файл "
+										+ filesave.getSelectedFile().getName());
+
+							}
 
 					} catch (IOException e) {
 
@@ -336,9 +381,14 @@ public class main {
 
 					if (port.load(fileopen.getSelectedFile().getPath()))
 
-						if (fileopen.getSelectedFile().getPath() != null)
+						if (fileopen.getSelectedFile().getPath() != null) {
 
 							System.out.println("Good");
+
+							log.log(Level.INFO, "Загрузили порт из файла "
+									+ fileopen.getSelectedFile().getName());
+
+						}
 
 				}
 

@@ -5,14 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WindowsFormsApp2
+namespace WindowsFormsApp3
 {
     interface Techno
     {
         void move(Graphics g);
         void draw(Graphics g);
         void setPosition(int x, int y);
-        
-        
+
+
     }
 }

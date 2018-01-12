@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace WindowsFormsApplication3
 {
     class ClassArray<T> where T : ITechno
-    {        
+    {       
         private T defaultValue;
         private Dictionary<int, T> places;
         private int maxCount;
@@ -16,14 +16,15 @@ namespace WindowsFormsApplication3
         {
             defaultValue = defVal;
             places = new Dictionary<int, T>();
-            maxCount = size;            
+            maxCount = size;
+            
         }
        
         public static int operator +(ClassArray<T> p, T ship)
         {
             if (p.places.Count == p.maxCount)
             {
-                return -1;
+               throw new ParkingOverflowException();
             }
             for (int i = 0; i < p.places.Count; i++)
             {
@@ -35,8 +36,8 @@ namespace WindowsFormsApplication3
             }
 
             p.places.Add(p.places.Count, ship);
-            return p.places.Count - 1;           
-
+            return p.places.Count - 1;
+        
         }
         public static T operator -(ClassArray<T> p, int index)
         {
@@ -46,7 +47,7 @@ namespace WindowsFormsApplication3
                 p.places.Remove(index);
                 return ship;
             }
-            return p.defaultValue;
+            throw new ParkingIndexOutOfRangeException();
         }
         private bool CheckFreePlace(int index)
         {

@@ -12,7 +12,7 @@ namespace WindowsFormsApplication3
     {
         //список уровней парковки
         List<ClassArray<ITechno>> portStages;
-        int countPlaces = 20;
+        int countPlaces = 10;
         int placeSizeWidth = 350;
         int placeSizeHeight = 80;
         int currentLevel;

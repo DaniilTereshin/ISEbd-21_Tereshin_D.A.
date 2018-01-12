@@ -70,6 +70,7 @@
       <DependentUpon>FormSelectShip.cs</DependentUpon>
     </Compile>
     <Compile Include="Kreiser.cs" />
+    <Compile Include="ParkingAlreadyHaveException.cs" />
     <Compile Include="ParkingIndexOutOfRangeException.cs" />
     <Compile Include="ParkingOverflowException.cs" />
     <Compile Include="Port.cs" />

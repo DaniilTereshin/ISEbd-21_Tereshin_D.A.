@@ -43,16 +43,24 @@ namespace WindowsFormsApplication3
         public void Draw(Graphics g, int width, int height)
         {
             DrawMarking(g);
-            for (int i = 0; i < countPlaces; i++)
-            {
-                var ship = portStages[currentLevel][i];
-                if (ship != null)
+            int i = 0;
+                foreach (var ship in portStages[currentLevel])
                 {
                     ship.setPosition(5 + i / 5 * placeSizeWidth + 45, i % 5 * placeSizeHeight + 65);
                     ship.draw(g);
+                    i++;
                 }
-            }
+            
         }
+
+        public void Sort()
+        {
+            portStages.Sort();
+        }
+
+
+
+
         private void DrawMarking(Graphics g)
         {
             Pen pen = new Pen(Color.Black, 3);

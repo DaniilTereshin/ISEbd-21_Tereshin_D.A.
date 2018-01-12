@@ -10,12 +10,12 @@ namespace WindowsFormsApplication3
    public class Port
     {
         //список уровней парковки
-        List<ClassArray<Techno>> portStages;
+        List<ClassArray<ITechno>> portStages;
         int countPlaces = 20;
         int placeSizeWidth = 350;
         int placeSizeHeight = 80;
         int currentLevel;
-        private ClassArray<Techno> port;
+        private ClassArray<ITechno> port;
 
         public int getCurrentLevel { get { return currentLevel; } }
 
@@ -23,19 +23,19 @@ namespace WindowsFormsApplication3
         
         public Port(int countStages)
         {
-            portStages = new List<ClassArray<Techno>>(countStages);
+            portStages = new List<ClassArray<ITechno>>(countStages);
             for (int i = 0; i < countStages; i++)
             {
-                portStages.Add(new ClassArray<Techno>(countPlaces, null));
+                portStages.Add(new ClassArray<ITechno>(countPlaces, null));
             }
 
             
         }
-        public int PutShipInPort(Techno ship)
+        public int PutShipInPort(ITechno ship)
         {
             return portStages[currentLevel] + ship;
         }
-        public Techno GetShipInPort(int ticket)
+        public ITechno GetShipInPort(int ticket)
         {
             return portStages[currentLevel] - ticket;
         }

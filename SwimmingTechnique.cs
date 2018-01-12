@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApplication3
 {
-    public abstract class SwimmingTechnique : Techno
+    public abstract class SwimmingTechnique : ITechno
     {
         protected float startPosX;
         protected float startPosY;
@@ -25,6 +25,9 @@ namespace WindowsFormsApplication3
             startPosY = y;
         }
 
-
+        public virtual void setMainColor (Color color)
+        {
+            ColorBody = color;
+        }
     }
 }

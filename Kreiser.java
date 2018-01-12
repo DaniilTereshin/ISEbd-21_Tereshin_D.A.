@@ -32,7 +32,7 @@ public class Kreiser extends Ship {
 
 		if (zenit) {
 
-			g.setColor(Color.BLACK);
+			g.setColor(color);
 
 			g.setColor(colorKreiser);
 			g.fillOval(startX + 35, startY - 34, 18, 15);

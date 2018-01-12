@@ -2,9 +2,11 @@ import java.awt.Color;
 
 import java.awt.Graphics;
 
+import java.util.ArrayList;
+
 public class Port {
 
-	ClassArray<ITechno> port;
+	ArrayList<ClassArray<ITechno>> portStages;
 
 	int countPlaces = 20;
 
@@ -12,11 +14,45 @@ public class Port {
 
 	int placeHeight = 80;
 
-	public Port()
+	int currentLevel;
+
+	public Port(int countStages)
 
 	{
 
-		port = new ClassArray<ITechno>(countPlaces, null);
+		portStages = new ArrayList<ClassArray<ITechno>>(countStages);
+
+		for (int i = 0; i < countStages; i++)
+
+		{
+
+			portStages.add(new ClassArray<ITechno>(countPlaces, null));
+
+		}
+
+	}
+
+	public int getCurrentLevel() {
+
+		return currentLevel;
+
+	}
+
+	public void levelUp()
+
+	{
+
+		if (currentLevel + 1 < portStages.size())
+			currentLevel++;
+
+	}
+
+	public void levelDown()
+
+	{
+
+		if (currentLevel > 0)
+			currentLevel--;
 
 	}
 
@@ -24,7 +60,8 @@ public class Port {
 
 	{
 
-		return port.plus(port, plane);
+		return portStages.get(currentLevel).plus(portStages.get(currentLevel),
+				plane);
 
 	}
 
@@ -32,7 +69,8 @@ public class Port {
 
 	{
 
-		return port.minus(port, index);
+		return portStages.get(currentLevel).minus(portStages.get(currentLevel),
+				index);
 
 	}
 
@@ -46,7 +84,7 @@ public class Port {
 
 		{
 
-			ITechno plane = port.getObject(i);
+			ITechno plane = portStages.get(currentLevel).getPlane(i);
 
 			if (plane != null)
 

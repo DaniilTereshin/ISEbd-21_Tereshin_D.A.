@@ -29,5 +29,7 @@ namespace WindowsFormsApplication3
         {
             ColorBody = color;
         }
+
+        public abstract string getInfo();
     }
 }

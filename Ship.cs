@@ -62,6 +62,27 @@ namespace WindowsFormsApplication3
             startPosX = 40;
             startPosY = 100;
         }
+
+        public Ship(string info)
+        {
+            string[] strs = info.Split(';');
+            if (strs.Length == 5) //если че цифра
+            {
+                MaxSpeed = Convert.ToInt32(strs[0]);
+                MaxCountEkipazh = Convert.ToInt32(strs[1]);
+                goruchee = Convert.ToInt32(strs[2]);
+                Tonnazh = Convert.ToInt32(strs[3]);
+                ColorBody = Color.FromName(strs[4]);
+
+            }
+            this.countEkipazh = 0;
+            Random rand = new Random();
+            startPosX = rand.Next(10, 200);
+            startPosY = rand.Next(10, 200);
+
+
+
+        }
         public override void move(Graphics g)
         {
 
@@ -98,6 +119,12 @@ namespace WindowsFormsApplication3
             g.FillRectangle(br, startPosX + 8, startPosY - 40, 5, 20);
             g.FillRectangle(br, startPosX + 16, startPosY - 45, 5, 26);
         }
+
+        public override string getInfo()
+        {
+            return MaxSpeed + ";" + MaxCountEkipazh + ";" + goruchee + ";" + Tonnazh + ";" + ColorBody.Name;
+        }
+
 
     }
 }

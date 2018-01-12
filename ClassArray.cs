@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace WindowsFormsApplication3
 {
     class ClassArray<T> where T : ITechno
-    {
+    {        
         private T defaultValue;
         private Dictionary<int, T> places;
         private int maxCount;
@@ -18,7 +18,7 @@ namespace WindowsFormsApplication3
             places = new Dictionary<int, T>();
             maxCount = size;            
         }
-      
+       
         public static int operator +(ClassArray<T> p, T ship)
         {
             if (p.places.Count == p.maxCount)
@@ -35,8 +35,8 @@ namespace WindowsFormsApplication3
             }
 
             p.places.Add(p.places.Count, ship);
-            return p.places.Count - 1;
-          
+            return p.places.Count - 1;           
+
         }
         public static T operator -(ClassArray<T> p, int index)
         {

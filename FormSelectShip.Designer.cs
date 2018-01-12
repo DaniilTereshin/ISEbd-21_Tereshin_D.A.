@@ -137,7 +137,7 @@
             // panelGreen
             // 
             this.panelGreen.AllowDrop = true;
-            this.panelGreen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.panelGreen.BackColor = System.Drawing.Color.Olive;
             this.panelGreen.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelGreen.Location = new System.Drawing.Point(84, 120);
             this.panelGreen.Name = "panelGreen";
@@ -159,7 +159,7 @@
             // panelYellow
             // 
             this.panelYellow.AllowDrop = true;
-            this.panelYellow.BackColor = System.Drawing.Color.Yellow;
+            this.panelYellow.BackColor = System.Drawing.Color.GreenYellow;
             this.panelYellow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelYellow.Location = new System.Drawing.Point(19, 71);
             this.panelYellow.Name = "panelYellow";
@@ -180,7 +180,7 @@
             // 
             // panelGold
             // 
-            this.panelGold.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.panelGold.BackColor = System.Drawing.Color.Yellow;
             this.panelGold.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelGold.Location = new System.Drawing.Point(86, 23);
             this.panelGold.Name = "panelGold";

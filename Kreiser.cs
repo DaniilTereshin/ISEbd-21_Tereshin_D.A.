@@ -53,7 +53,33 @@ namespace WindowsFormsApplication3
             this.zenit = zenit;
             this.brony = brony;
             this.dopColor = dopColor;
+
         }
+
+
+        public Kreiser(string info) : base (info)
+        {
+            string[] strs = info.Split(';');
+            if (strs.Length == 8) //если че цифра
+            {
+                MaxSpeed = Convert.ToInt32(strs[0]);
+                MaxCountEkipazh = Convert.ToInt32(strs[1]);
+                goruchee = Convert.ToInt32(strs[2]);
+                Tonnazh = Convert.ToInt32(strs[3]);
+                ColorBody = Color.FromName(strs[4]);
+                zenit = Convert.ToBoolean(strs[5]);
+                brony = Convert.ToBoolean(strs[6]);
+                dopColor = Color.FromName(strs[7]);
+
+            }
+
+        }
+
+
+
+
+
+
         protected override void drawKorablSwim(Graphics g)
         {
             base.drawKorablSwim(g);
@@ -81,5 +107,12 @@ namespace WindowsFormsApplication3
         {
             dopColor = color;
         }
+
+        public override string getInfo()
+        {
+            return MaxSpeed + ";" + MaxCountEkipazh + ";" + goruchee + ";" + Tonnazh + ";" + ColorBody.Name 
+                + ";" + zenit + ";" + brony + ";" + dopColor.Name;
+        }
+
     }
 }

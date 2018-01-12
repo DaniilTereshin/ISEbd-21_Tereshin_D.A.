@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WindowsFormsApp3
+namespace WindowsFormsApplication3
 {
-    interface Techno
+   public interface Techno
     {
         void move(Graphics g);
         void draw(Graphics g);

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace WindowsFormsApp3
+namespace WindowsFormsApplication3
 {
     public abstract class SwimmingTechnique : Techno
     {

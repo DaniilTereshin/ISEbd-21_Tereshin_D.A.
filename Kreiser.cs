@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WindowsFormsApp3
+namespace WindowsFormsApplication3
 {
     class Kreiser : Ship
     {

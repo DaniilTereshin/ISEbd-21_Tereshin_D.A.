@@ -10,10 +10,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsApp2
-{ 
-    public partial class Form1 : Form
+namespace WindowsFormsApp3
 {
+    public partial class Form1 : Form
+    {
         Color color;
         Color dopColor;
         int maxSpeed;
@@ -35,9 +35,9 @@ namespace WindowsFormsApp2
 
         }
 
-    
 
-    private void buttonSelectColor_Click(object sender, EventArgs e)
+
+        private void buttonSelectColor_Click(object sender, EventArgs e)
         {
             ColorDialog cd = new ColorDialog();
             if (cd.ShowDialog() == System.Windows.Forms.DialogResult.OK)

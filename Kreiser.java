@@ -16,6 +16,8 @@ public class Kreiser extends Ship {
 
 		super(maxSpeed, tonnazh, maxCountEkipazh, color);
 
+		// TODO Auto-generated constructor stub
+
 		this.zenit = zenit;
 
 		this.brony = brony;

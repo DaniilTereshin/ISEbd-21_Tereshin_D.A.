@@ -90,12 +90,16 @@ public class Ship extends SwimmingTechnique {
 	@Override
 	public int getTonnazh() {
 
+		// TODO Auto-generated method stub
+
 		return (int) super.tonnazh;
 
 	}
 
 	@Override
 	public void move(Graphics g) {
+
+		// / TODO Auto-generated method stub
 
 		if (this.goruchee > 0) {
 
@@ -119,6 +123,8 @@ public class Ship extends SwimmingTechnique {
 
 	@Override
 	public void draw(Graphics g) {
+
+		// TODO Auto-generated method stub
 
 		drawShipPlane(g);
 

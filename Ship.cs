@@ -8,8 +8,93 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication3
 {
-    public class Ship : SwimmingTechnique
+    public class Ship : SwimmingTechnique, IComparable<Ship>, IEquatable<Ship>
     {
+        public int CompareTo(Ship other)
+        {
+            if (other == null)
+            {
+                return 1;
+            }
+            if (MaxSpeed != other.MaxSpeed)
+            {
+                return MaxSpeed.CompareTo(other.MaxSpeed);
+            }
+            if (MaxCountEkipazh != other.MaxCountEkipazh)
+            {
+                return MaxCountEkipazh.CompareTo(other.MaxCountEkipazh);
+            }
+            if (osnastka != other.osnastka)
+            {
+                return osnastka.CompareTo(other.osnastka);
+
+            }
+            if (ColorBody != other.ColorBody)
+            {
+                ColorBody.Name.CompareTo(other.ColorBody.Name);
+            }
+            return 0;
+        }
+
+        public bool Equals (Ship other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+
+            if (MaxSpeed != other.MaxSpeed)
+            {
+                return false;
+            }
+
+
+            if (MaxCountEkipazh != other.MaxCountEkipazh)
+            {
+                return false;
+            }
+            if (osnastka != other.osnastka)
+            {
+                return false;
+            }
+
+            if (ColorBody != other.ColorBody)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+
+
+            Ship shipObj = obj as Ship;
+            if (shipObj == null)
+            {
+                return false;
+            }
+            else
+            {
+                return Equals(shipObj);
+            }
+        }
+
+
+
+
+
+
+        public override int GetHashCode()
+        {
+            return MaxSpeed.GetHashCode();
+        }
+
+
         protected int countEkipazh;
         public virtual int MaxCountEkipazh { protected set; get; }
         public virtual int osnastka { protected set; get; }

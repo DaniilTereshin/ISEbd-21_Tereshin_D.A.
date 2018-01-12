@@ -7,8 +7,107 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApplication3
 {
-    class Kreiser : Ship
+    class Kreiser : Ship , IComparable<Kreiser>, IEquatable<Kreiser>
     {
+
+        public int CompareTo(Kreiser other)
+        {
+
+            var res = (this is Ship).CompareTo(other is Ship);
+            if ( res !=0)
+            {
+                return res;
+            }
+            if (zenit != other.zenit)
+            {
+                return zenit.CompareTo(other.zenit);
+            }
+            if (brony != other.brony)
+            {
+                return brony.CompareTo(other.brony);
+            }
+            
+            if (dopColor != other.dopColor)
+            {
+                dopColor.Name.CompareTo(other.dopColor.Name);
+            }
+            return 0;
+        }
+
+        public bool Equals(Kreiser other)
+        {
+
+            var res = (this is Ship).Equals(other is Ship);
+            if (!res)
+            {
+                return res;
+            }
+
+            if (zenit != other.zenit)
+            {
+                return false;
+            }
+
+
+            if (brony != other.brony)
+            {
+                return false;
+            }
+
+            if (dopColor != other.dopColor)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+            {
+                return false;
+            }
+
+
+            Kreiser shipObj = obj as Kreiser;
+            if (shipObj == null)
+            {
+                return false;
+            }
+            else
+            {
+                return Equals(shipObj);
+            }
+        }
+
+
+
+
+
+
+        public override int GetHashCode()
+        {
+            return MaxSpeed.GetHashCode();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         private bool zenit;
         private bool brony;
         private Color dopColor;

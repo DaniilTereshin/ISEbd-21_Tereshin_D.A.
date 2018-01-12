@@ -225,5 +225,11 @@ namespace WindowsFormsApplication3
         {
 
         }
+
+        private void Sort_Click(object sender, EventArgs e)
+        {
+            port.Sort();
+            Draw();
+        }
     }
 }

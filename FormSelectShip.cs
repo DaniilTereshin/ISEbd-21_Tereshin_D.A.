@@ -156,7 +156,7 @@ namespace WindowsFormsApplication3
             if (ship != null)
             {
                 ship.setMainColor((Color)e.Data.GetData(typeof(Color)));
-               
+               //Log.Info("Выбрали основной цвет");
                 DrawShip();
             }
         }
@@ -223,6 +223,5 @@ namespace WindowsFormsApplication3
             
         }
 
-        
     }
 }

@@ -68,6 +68,7 @@
             this.labelShip.Size = new System.Drawing.Size(30, 15);
             this.labelShip.TabIndex = 1;
             this.labelShip.Text = "Ship";
+            this.labelShip.Click += new System.EventHandler(this.labelShip_Click);
             this.labelShip.MouseDown += new System.Windows.Forms.MouseEventHandler(this.labelShip_MouseDown);
             // 
             // panelShip
@@ -92,6 +93,7 @@
             this.labelBaseColor.Size = new System.Drawing.Size(85, 15);
             this.labelBaseColor.TabIndex = 3;
             this.labelBaseColor.Text = "Основной цвет";
+            this.labelBaseColor.Click += new System.EventHandler(this.labelBaseColor_Click);
             this.labelBaseColor.DragDrop += new System.Windows.Forms.DragEventHandler(this.labelBaseColor_DragDrop);
             this.labelBaseColor.DragEnter += new System.Windows.Forms.DragEventHandler(this.labelBaseColor_DragEnter);
             // 
@@ -218,6 +220,7 @@
             this.labelKreiser.Size = new System.Drawing.Size(41, 15);
             this.labelKreiser.TabIndex = 6;
             this.labelKreiser.Text = "Kreiser";
+            this.labelKreiser.Click += new System.EventHandler(this.labelKreiser_Click);
             this.labelKreiser.MouseDown += new System.Windows.Forms.MouseEventHandler(this.labelKreiser_MouseDown);
             // 
             // labelDopColor
@@ -230,6 +233,7 @@
             this.labelDopColor.Size = new System.Drawing.Size(53, 15);
             this.labelDopColor.TabIndex = 7;
             this.labelDopColor.Text = "DopColor";
+            this.labelDopColor.Click += new System.EventHandler(this.labelDopColor_Click);
             this.labelDopColor.DragDrop += new System.Windows.Forms.DragEventHandler(this.labelDopColor_DragDrop);
             this.labelDopColor.DragEnter += new System.Windows.Forms.DragEventHandler(this.labelBaseColor_DragEnter);
             // 

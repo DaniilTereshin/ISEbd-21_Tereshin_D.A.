@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NLog;
 
 namespace WindowsFormsApplication3
 {
@@ -22,10 +23,12 @@ namespace WindowsFormsApplication3
         /// Форма для добавления
         /// </summary>
         FormSelectShip form;
+        private Logger Log;
 
         public Form2()
         {
             InitializeComponent();
+            Log = LogManager.GetCurrentClassLogger();
             port = new Port(5);
             //заполнение listBox
             for (int i = 1; i < 6; i++)
@@ -57,6 +60,7 @@ namespace WindowsFormsApplication3
         {
             port.LevelDown();
             listBoxLevels.SelectedIndex = port.getCurrentLevel;
+            Log.Info("Переход на уровень ниже Текущий уровень: " + port.getCurrentLevel );
             Draw();
         }
         /// <summary>
@@ -68,6 +72,7 @@ namespace WindowsFormsApplication3
         {
             port.LevelUp();
             listBoxLevels.SelectedIndex = port.getCurrentLevel;
+            Log.Info("Переход на уровень выше Текущий уровень: " + port.getCurrentLevel);
             Draw();
         }
         /// <summary>
@@ -79,6 +84,7 @@ namespace WindowsFormsApplication3
         {
             form = new FormSelectShip();
             form.AddEvent(AddShip);
+            Log.Info("Добавили корабль уровень парковки: " + port.getCurrentLevel);
             form.Show();
         }
         /// <summary>
@@ -89,15 +95,20 @@ namespace WindowsFormsApplication3
         {
             if (ship != null)
             {
-                int place = port.PutShipInPort(ship);
-                if (place > -1)
+                try
                 {
+                    int place = port.PutShipInPort(ship);
                     Draw();
                     MessageBox.Show("Ваше место: " + place);
                 }
-                else
+                
+                catch (ParkingOverflowException ex)
                 {
-                    MessageBox.Show("Корабль не удалось пришвартовать");
+                    MessageBox.Show(ex.Message, "Ошибка переполнения", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Общая ошибка",MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -118,6 +129,7 @@ namespace WindowsFormsApplication3
                     int place = port.PutShipInPort(ship);
                     Draw();
                     MessageBox.Show("Ваше место: " + place);
+                    Log.Info("Добавили крейсер уровень парковки: " + port.getCurrentLevel);
                 }
             }
         }
@@ -133,19 +145,25 @@ namespace WindowsFormsApplication3
                 string level = listBoxLevels.Items[listBoxLevels.SelectedIndex].ToString();
                 if (maskedTextBox1.Text != "")
                 {
+                    try { 
                     ITechno ship = port.GetShipInPort(Convert.ToInt32(maskedTextBox1.Text));
-                    if (ship != null)
-                    {//если удалось забрать, то отрисовываем
+                   
+                    //если удалось забрать, то отрисовываем
                         Bitmap bmp = new Bitmap(pictureBoxTakeShip.Width, pictureBoxTakeShip.Height);
                         Graphics gr = Graphics.FromImage(bmp);
                         ship.setPosition(20, 80);
                         ship.draw(gr);
                         pictureBoxTakeShip.Image = bmp;
+                        Log.Info("Забрали корабль") ;
                         Draw();
                     }
-                    else
+                    catch (ParkingIndexOutOfRangeException ex)
+                    {
+                        MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    catch ( Exception ex)
                     {//иначе сообщаем об этом
-                        MessageBox.Show("Извинте, на этом месте нет корабля");
+                        MessageBox.Show(ex.Message, "", MessageBoxButtons.OK,MessageBoxIcon.Error);
                     }
                 }
             }

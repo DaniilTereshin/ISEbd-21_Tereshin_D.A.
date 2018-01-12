@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NLog;
 
 namespace WindowsFormsApplication3
 {
@@ -24,6 +25,7 @@ namespace WindowsFormsApplication3
         /// Получить машину
         /// </summary>
         public ITechno getShip { get { return ship; } }
+        private Logger Log;
         /// <summary>
         /// Отрисовать машину
         /// </summary>
@@ -130,6 +132,7 @@ namespace WindowsFormsApplication3
         {
             (sender as Control).DoDragDrop((sender as Control).BackColor,
             DragDropEffects.Move | DragDropEffects.Copy);
+
         }
         /// <summary>
         /// Готовимся к приему
@@ -153,6 +156,7 @@ namespace WindowsFormsApplication3
             if (ship != null)
             {
                 ship.setMainColor((Color)e.Data.GetData(typeof(Color)));
+               
                 DrawShip();
             }
         }
@@ -168,6 +172,7 @@ namespace WindowsFormsApplication3
                 if (ship is Kreiser)
                 {
                     (ship as Kreiser).setDopColor((Color)e.Data.GetData(typeof(Color)));
+                    Log.Info("Выбрали дополнительный цвет");
                     DrawShip();
                 }
             }
@@ -187,7 +192,6 @@ namespace WindowsFormsApplication3
 
         }
 
-        
 
         private void FormSelectCar_Load(object sender, EventArgs e)
         {
@@ -199,5 +203,26 @@ namespace WindowsFormsApplication3
 
         }
 
+        private void labelShip_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void labelKreiser_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void labelBaseColor_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void labelDopColor_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        
     }
 }

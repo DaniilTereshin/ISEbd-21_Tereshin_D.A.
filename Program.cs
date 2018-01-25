@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication3
 {
-    public delegate void myDel(WindowsFormsApplication3.ITechno ship);
+    public delegate void myDel(WindowsFormsApplication3.Techno ship);
     static class Program
     {
         /// <summary>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApplication3
 {
-    class ClassArray<T> where T : ITechno
+    class ClassArray<T> where T : Techno
     {
         private T defaultValue;
         private Dictionary<int, T> places;

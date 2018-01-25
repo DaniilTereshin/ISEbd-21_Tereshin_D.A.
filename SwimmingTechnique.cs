@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WindowsFormsApplication3
 {
-    public abstract class SwimmingTechnique : ITechno
+    public abstract class SwimmingTechnique : Techno
     {
         protected float startPosX;
         protected float startPosY;

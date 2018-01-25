@@ -85,7 +85,7 @@ namespace WindowsFormsApplication3
         /// Метод добавления машины
         /// </summary>
         /// <param name="car"></param>
-        private void AddShip(ITechno ship)
+        private void AddShip(Techno ship)
         {
             if (ship != null)
             {
@@ -133,7 +133,7 @@ namespace WindowsFormsApplication3
                 string level = listBoxLevels.Items[listBoxLevels.SelectedIndex].ToString();
                 if (maskedTextBox1.Text != "")
                 {
-                    ITechno ship = port.GetShipInPort(Convert.ToInt32(maskedTextBox1.Text));
+                    Techno ship = port.GetShipInPort(Convert.ToInt32(maskedTextBox1.Text));
                     if (ship != null)
                     {//если удалось забрать, то отрисовываем
                         Bitmap bmp = new Bitmap(pictureBoxTakeShip.Width, pictureBoxTakeShip.Height);

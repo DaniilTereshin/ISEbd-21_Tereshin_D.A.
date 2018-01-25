@@ -20,7 +20,7 @@ namespace WindowsFormsApplication3
         int maxCountEkipazh;
         int Tonnazh;
         int goruchee;
-        private ITechno inter;
+        private Techno inter;
         public Form1()
         {
             InitializeComponent();

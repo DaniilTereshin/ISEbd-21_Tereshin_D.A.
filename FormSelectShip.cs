@@ -19,11 +19,11 @@ namespace WindowsFormsApplication3
         /// <summary>
         /// Переменная-выбранная машина
         /// </summary>
-        ITechno ship = null;
+        Techno ship = null;
         /// <summary>
         /// Получить машину
         /// </summary>
-        public ITechno getShip { get { return ship; } }
+        public Techno getShip { get { return ship; } }
         /// <summary>
         /// Отрисовать машину
         /// </summary>

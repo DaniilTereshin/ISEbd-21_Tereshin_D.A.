@@ -86,14 +86,14 @@ namespace WindowsFormsApplication3
 
         protected virtual void drawKorablSwim(Graphics g)
         {
-            Pen pen = new Pen(Color.FromArgb(255, 0, 0, 0), 3);
+            Pen pen = new Pen(ColorBody);
             g.DrawLine(pen, startPosX, startPosY, startPosX + 60, startPosY);
 
             g.DrawLine(pen, startPosX, startPosY, startPosX - 10, startPosY - 20);
             g.DrawLine(pen, startPosX + 60, startPosY, startPosX + 85, startPosY - 20);
             g.DrawLine(pen, startPosX - 10, startPosY - 20, startPosX + 85, startPosY - 20);
 
-            Brush br = new SolidBrush(Color.Black);
+            Brush br = new SolidBrush(ColorBody);
             g.FillRectangle(br, startPosX, startPosY - 35, 5, 16);
             g.FillRectangle(br, startPosX + 8, startPosY - 40, 5, 20);
             g.FillRectangle(br, startPosX + 16, startPosY - 45, 5, 26);

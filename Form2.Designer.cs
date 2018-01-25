@@ -28,41 +28,41 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBoxParking = new System.Windows.Forms.PictureBox();
-            this.buttonSetCar = new System.Windows.Forms.Button();
+            this.pictureBoxPort = new System.Windows.Forms.PictureBox();
+            this.buttonSetShip = new System.Windows.Forms.Button();
             this.buttonSetGru = new System.Windows.Forms.Button();
-            this.buttonTakeCar = new System.Windows.Forms.Button();
+            this.buttonTakeShip = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.pictureBoxTakeCar = new System.Windows.Forms.PictureBox();
+            this.pictureBoxTakeShip = new System.Windows.Forms.PictureBox();
             this.listBoxLevels = new System.Windows.Forms.ListBox();
             this.buttonDown = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxParking)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTakeCar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPort)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTakeShip)).BeginInit();
             this.SuspendLayout();
             // 
-            // pictureBoxParking
+            // pictureBoxPort
             // 
-            this.pictureBoxParking.Location = new System.Drawing.Point(2, 2);
-            this.pictureBoxParking.Margin = new System.Windows.Forms.Padding(2);
-            this.pictureBoxParking.Name = "pictureBoxParking";
-            this.pictureBoxParking.Size = new System.Drawing.Size(659, 404);
-            this.pictureBoxParking.TabIndex = 0;
-            this.pictureBoxParking.TabStop = false;
-            this.pictureBoxParking.Click += new System.EventHandler(this.pictureBoxParking_Click);
+            this.pictureBoxPort.Location = new System.Drawing.Point(2, 2);
+            this.pictureBoxPort.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBoxPort.Name = "pictureBoxPort";
+            this.pictureBoxPort.Size = new System.Drawing.Size(659, 404);
+            this.pictureBoxPort.TabIndex = 0;
+            this.pictureBoxPort.TabStop = false;
+            this.pictureBoxPort.Click += new System.EventHandler(this.pictureBoxPort_Click);
             // 
-            // buttonSetCar
+            // buttonSetShip
             // 
-            this.buttonSetCar.Location = new System.Drawing.Point(760, 186);
-            this.buttonSetCar.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonSetCar.Name = "buttonSetCar";
-            this.buttonSetCar.Size = new System.Drawing.Size(138, 41);
-            this.buttonSetCar.TabIndex = 1;
-            this.buttonSetCar.Text = "Пришвартовать корабль";
-            this.buttonSetCar.UseVisualStyleBackColor = true;
-            this.buttonSetCar.Click += new System.EventHandler(this.buttonSetCar_Click_1);
+            this.buttonSetShip.Location = new System.Drawing.Point(760, 186);
+            this.buttonSetShip.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonSetShip.Name = "buttonSetShip";
+            this.buttonSetShip.Size = new System.Drawing.Size(138, 41);
+            this.buttonSetShip.TabIndex = 1;
+            this.buttonSetShip.Text = "Пришвартовать корабль";
+            this.buttonSetShip.UseVisualStyleBackColor = true;
+            this.buttonSetShip.Click += new System.EventHandler(this.buttonSetShip_Click);
             // 
             // buttonSetGru
             // 
@@ -73,18 +73,18 @@
             this.buttonSetGru.TabIndex = 2;
             this.buttonSetGru.Text = "Пришвартовать крейсер";
             this.buttonSetGru.UseVisualStyleBackColor = true;
-            this.buttonSetGru.Click += new System.EventHandler(this.buttonSetGru_Click);
+            this.buttonSetGru.Click += new System.EventHandler(this.buttonSetKreiser_Click);
             // 
-            // buttonTakeCar
+            // buttonTakeShip
             // 
-            this.buttonTakeCar.Location = new System.Drawing.Point(668, 326);
-            this.buttonTakeCar.Margin = new System.Windows.Forms.Padding(2);
-            this.buttonTakeCar.Name = "buttonTakeCar";
-            this.buttonTakeCar.Size = new System.Drawing.Size(94, 31);
-            this.buttonTakeCar.TabIndex = 3;
-            this.buttonTakeCar.Text = "Забрать";
-            this.buttonTakeCar.UseVisualStyleBackColor = true;
-            this.buttonTakeCar.Click += new System.EventHandler(this.buttonTakeCar_Click_1);
+            this.buttonTakeShip.Location = new System.Drawing.Point(829, 285);
+            this.buttonTakeShip.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonTakeShip.Name = "buttonTakeShip";
+            this.buttonTakeShip.Size = new System.Drawing.Size(94, 31);
+            this.buttonTakeShip.TabIndex = 3;
+            this.buttonTakeShip.Text = "Забрать";
+            this.buttonTakeShip.UseVisualStyleBackColor = true;
+            this.buttonTakeShip.Click += new System.EventHandler(this.buttonTakeShip_Click);
             // 
             // label1
             // 
@@ -115,13 +115,14 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "Место";
             // 
-            // pictureBoxTakeCar
+            // pictureBoxTakeShip
             // 
-            this.pictureBoxTakeCar.Location = new System.Drawing.Point(668, 362);
-            this.pictureBoxTakeCar.Name = "pictureBoxTakeCar";
-            this.pictureBoxTakeCar.Size = new System.Drawing.Size(145, 34);
-            this.pictureBoxTakeCar.TabIndex = 7;
-            this.pictureBoxTakeCar.TabStop = false;
+            this.pictureBoxTakeShip.Location = new System.Drawing.Point(759, 398);
+            this.pictureBoxTakeShip.Name = "pictureBoxTakeShip";
+            this.pictureBoxTakeShip.Size = new System.Drawing.Size(246, 126);
+            this.pictureBoxTakeShip.TabIndex = 7;
+            this.pictureBoxTakeShip.TabStop = false;
+            this.pictureBoxTakeShip.Click += new System.EventHandler(this.pictureBoxTakeShip_Click);
             // 
             // listBoxLevels
             // 
@@ -130,7 +131,6 @@
             this.listBoxLevels.Name = "listBoxLevels";
             this.listBoxLevels.Size = new System.Drawing.Size(178, 134);
             this.listBoxLevels.TabIndex = 8;
-            this.listBoxLevels.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // buttonDown
             // 
@@ -156,23 +156,24 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(934, 408);
+            this.ClientSize = new System.Drawing.Size(1050, 551);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonDown);
             this.Controls.Add(this.listBoxLevels);
-            this.Controls.Add(this.pictureBoxParking);
-            this.Controls.Add(this.pictureBoxTakeCar);
+            this.Controls.Add(this.pictureBoxPort);
+            this.Controls.Add(this.pictureBoxTakeShip);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.maskedTextBox1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.buttonTakeCar);
+            this.Controls.Add(this.buttonTakeShip);
             this.Controls.Add(this.buttonSetGru);
-            this.Controls.Add(this.buttonSetCar);
+            this.Controls.Add(this.buttonSetShip);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form2";
             this.Text = "Form2";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxParking)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTakeCar)).EndInit();
+            this.Load += new System.EventHandler(this.Form2_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPort)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTakeShip)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -180,14 +181,14 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBoxParking;
-        private System.Windows.Forms.Button buttonSetCar;
+        private System.Windows.Forms.PictureBox pictureBoxPort;
+        private System.Windows.Forms.Button buttonSetShip;
         private System.Windows.Forms.Button buttonSetGru;
-        private System.Windows.Forms.Button buttonTakeCar;
+        private System.Windows.Forms.Button buttonTakeShip;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.MaskedTextBox maskedTextBox1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.PictureBox pictureBoxTakeCar;
+        private System.Windows.Forms.PictureBox pictureBoxTakeShip;
         private System.Windows.Forms.ListBox listBoxLevels;
         private System.Windows.Forms.Button buttonDown;
         private System.Windows.Forms.Button button1;

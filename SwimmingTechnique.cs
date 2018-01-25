@@ -25,6 +25,9 @@ namespace WindowsFormsApplication3
             startPosY = y;
         }
 
-
+        public virtual void setMainColor (Color color)
+        {
+            ColorBody = color;
+        }
     }
 }

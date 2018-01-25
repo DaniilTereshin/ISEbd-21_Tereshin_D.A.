@@ -12,7 +12,7 @@ namespace WindowsFormsApplication3
         void move(Graphics g);
         void draw(Graphics g);
         void setPosition(int x, int y);
-
+        void setMainColor(Color color);
 
     }
 }

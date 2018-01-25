@@ -6,6 +6,7 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication3
 {
+    public delegate void myDel(WindowsFormsApplication3.Techno ship);
     static class Program
     {
         /// <summary>
@@ -15,7 +16,7 @@ namespace WindowsFormsApplication3
         static void Main()
         {
             Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+            Application.SetCompatibleTextRenderingDefault(false);         
             Application.Run(new Form2());
         }
     }
